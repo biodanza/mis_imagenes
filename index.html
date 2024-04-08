@@ -79,10 +79,10 @@
          }
          });
          });
-        function copyLink(song) {
+        function copyLink(link) {
             var dummy = document.createElement('input');
             document.body.appendChild(dummy);
-            dummy.value = window.location.href.replace(/\/[^\/]+$/, '') + '/' + song;
+            dummy.value = link.href;
             dummy.select();
             document.execCommand('copy');
             document.body.removeChild(dummy);
@@ -97,10 +97,9 @@
                     data.forEach(image => {
                         imageList.innerHTML += `
 		            <div class="item ${image.group} col-lg-3 col-md-4 col-6 col-sm">
-		               <a href="${image.file}" class="fancylight popup-btn" data-fancybox-group="light"> 
+		               <a href="${image.file}" class="fancylight popup-btn" data-fancybox-group="light" onclick="copyLink(this)"> 
 		               <img class="img-fluid" src="${image.file}" title="${image.name}">
 		               </a>
-		 		<button class="btn btn-secondary btn-sm" onclick="copyLink('${image.file}')"><i class="bi bi-link"></i></button>
 		            </div>
                         `;
                     });
