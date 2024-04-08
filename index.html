@@ -100,6 +100,7 @@
 		               <a href="${image.file}" class="fancylight popup-btn" data-fancybox-group="light"> 
 		               <img class="img-fluid" src="${image.file}" title="${image.name}">
 		               </a>
+		 		<button class="btn btn-secondary btn-sm" onclick="copyLink('${image.file}')"><i class="bi bi-link"></i></button>
 		            </div>
                         `;
                     });
@@ -113,7 +114,7 @@
                             ${music.name}
                             <div>
                                 <button class="btn btn-primary me-2" onclick="playMusic('${music.file}')"><i class="bi bi-music-note-beamed"></i></button>
-                                <button class="btn btn-secondary" onclick="copyLink('${music.file}')"><i class="bi bi-link"></i></button>
+                                <button class="btn btn-secondary btn-sm" onclick="copyLink('${music.file}')"><i class="bi bi-link"></i></button>
                             </div>
                         </li>
 -->
