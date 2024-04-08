@@ -88,7 +88,7 @@
             document.body.removeChild(dummy);
             // alert('Enlace copiado: ' + dummy.value);
         }
-        window.addEventListener('DOMContentLoaded', function() {
+//        window.addEventListener('DOMContentLoaded', function() {
             fetch(window.location.href.replace(/\/[^\/]+$/, '') + '/' +'imagenes.json') 
                 .then(response => response.json())
                 .then(data => {
@@ -105,7 +105,7 @@
                     });
                 })
                 .catch(error => console.error('Error al obtener el archivo JSON:', error));        
-        });
+//        });
 
 </script>      
 <!--			
