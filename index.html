@@ -56,7 +56,7 @@
                <li class="btn btn-outline-dark text" data-filter=".selfie">selfie</li>
             </ul>
          </div>
-         <div class="portfolio-item row">
+         <div class="portfolio-item row" id="image-list">
             <div class="item selfie col-lg-3 col-md-4 col-6 col-sm">
                <a href="https://image.freepik.com/free-photo/stylish-young-woman-with-bags-taking-selfie_23-2147962203.jpg" class="fancylight popup-btn" data-fancybox-group="light"> 
                <img class="img-fluid" src="https://image.freepik.com/free-photo/stylish-young-woman-with-bags-taking-selfie_23-2147962203.jpg" alt="">
@@ -75,11 +75,7 @@
          </div>
       </div>
 <script>
-          // $('.portfolio-item').isotope({
-        //  	itemSelector: '.item',
-        //  	layoutMode: 'fitRows'
-        //  });
-         $('.portfolio-menu ul li').click(function(){
+	$('.portfolio-menu ul li').click(function(){
          	$('.portfolio-menu ul li').removeClass('active');
          	$(this).addClass('active');
          	
@@ -98,5 +94,42 @@
          }
          });
          });
+        function copyLink(song) {
+            var dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = window.location.href.replace(/\/[^\/]+$/, '') + '/' + song;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            alert('Enlace copiado: ' + dummy.value);
+        }
+        window.addEventListener('DOMContentLoaded', function() {
+            fetch(window.location.href.replace(/\/[^\/]+$/, '') + '/' +'imagenes.json') 
+                .then(response => response.json())
+                .then(data => {
+                    const imageList = document.getElementById('image-list');
+                    // data.sort((a, b) => (a.name < b.name) ? -1 : ((a.name > b.name) ? 1 : 0));
+                    data.forEach(image => {
+                        imageList.innerHTML += `
+		            <div class="item ${image.group} col-lg-3 col-md-4 col-6 col-sm">
+		               <a href="${image.file}" class="fancylight popup-btn" data-fancybox-group="light"> 
+		               <img class="img-fluid" src="${image.file}" alt="${image.name}">
+		               </a>
+		            </div>
+                        `;
+                    });
+                })
+                .catch(error => console.error('Error al obtener el archivo JSON:', error));        
+        });
+
 </script>      
+<!--			
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            ${music.name}
+                            <div>
+                                <button class="btn btn-primary me-2" onclick="playMusic('${music.file}')"><i class="bi bi-music-note-beamed"></i></button>
+                                <button class="btn btn-secondary" onclick="copyLink('${music.file}')"><i class="bi bi-link"></i></button>
+                            </div>
+                        </li>
+-->
       
